@@ -1,6 +1,7 @@
 /* Copyright 2020 ZSA Technology Labs, Inc <@zsa>
  * Copyright 2020 Jack Humbert <jack.humb@gmail.com>
- * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
+ * Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna)
+ * <drashna@live.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,19 +18,21 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "version.h"
+
+#include "features/achordion.h"
 #include "moonlander.h"
-#include "stdint.h"
 #include "sendstring_swedish.h"
+#include "stdint.h"
+#include "version.h"
 
 enum layers {
-    BASE, // default layer
-    SYMB, // symbols
-    MDIA, // media keys
+  BASE, // default layer
+  SYMB, // symbols
+  MDIA, // media keys
 };
 
 enum custom_keycodes {
-    VRSN = SAFE_RANGE,
+  VRSN = SAFE_RANGE,
 };
 
 // clang-format off
@@ -37,9 +40,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT(
         KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LEFT,           KC_RGHT, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         KC_DEL,  KC_Q,    KC_D,    KC_R,    KC_W,    KC_B,    TG(SYMB),         TG(SYMB), KC_J,    KC_F,    KC_U,    KC_P,    KC_P,    KC_BSLS,
-        KC_BSPC, KC_A,    KC_S,    KC_H,    KC_T,    KC_G,    KC_HYPR,           KC_MEH,  KC_Y,    KC_N,    KC_E,    KC_O,    LT(MDIA, KC_SCLN), LGUI_T(KC_QUOT),
+        KC_BSPC, KC_A,    KC_S,    KC_H,    KC_T,    KC_G,    KC_HYPR,           KC_MEH,  KC_Y,    KC_N,    KC_E,    KC_O,    KC_I, LT(MDIA, KC_QUOT),
         KC_LSFT, LCTL_T(KC_Z),KC_X,KC_M,    KC_C,    KC_V,                                KC_K,    KC_L,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
-    LT(SYMB,KC_GRV),WEBUSB_PAIR,A(KC_LSFT),KC_LEFT, KC_RGHT,  LALT_T(KC_APP),    RCTL_T(KC_ESC),   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
+    LT(SYMB,KC_GRV),_______,A(KC_LSFT),KC_LEFT, KC_RGHT,  LALT_T(KC_APP),    RCTL_T(KC_ESC),   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
                                             KC_SPC,  KC_BSPC, KC_LGUI,           KC_LALT,  KC_TAB,  KC_ENT
     ),
 
@@ -61,14 +64,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______, _______,           _______, _______, _______
     ),
 };
+// clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        switch (keycode) {
-        case VRSN:
-            SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-            return false;
-        }
+  if (record->event.pressed) {
+    switch (keycode) {
+    case VRSN:
+      SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+      return false;
     }
-    return true;
+  }
+  return true;
 }
