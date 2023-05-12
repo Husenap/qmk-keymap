@@ -1,0 +1,35 @@
+---
+BasedOnStyle: Google
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignOperands: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortCaseLabelsOnASingleLine: 'false'
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+BinPackArguments: true
+BinPackParameters: true
+ColumnLimit: 100
+IndentCaseLabels: true
+IndentPPDirectives: AfterHash
+IndentWidth: 2
+TabWidth: 2
+PointerAlignment: Right
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 1
+UseTab: Never
+IndentCaseLabels: false
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex:        '^<.*\..*>'
+    Priority:     2
+  - Regex:        '^<.*>'
+    Priority:     1
+  - Regex:        '".*"'
+    Priority:     3
