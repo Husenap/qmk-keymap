@@ -17,11 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <math.h>
-
-#include "keycodes.h"
-#include "keymap_swedish.h"
-#include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 
 #include "moonlander.h"
