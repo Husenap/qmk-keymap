@@ -17,6 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <math.h>
+
+#include "keycodes.h"
+#include "keymap_swedish.h"
+#include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 
 #include "moonlander.h"
@@ -25,36 +30,60 @@
 #include "version.h"
 
 enum layers {
-  BASE, // default layer
-  SYMB, // symbols
-  MDIA, // media keys
+  DEF, // default layer
+  SYM, // symbols
+  MED, // media keys
+  NAV, // navigation
 };
 
 enum custom_keycodes {
-  VRSN = SAFE_RANGE,
+  VRSN = SAFE_RANGE, // Keyboard, Keymap, Version
+  REPEAT,            // Repeat key
+  DIRUP,             // Directory up, ../
 };
+
+#define TMB_RPT LT(NAV, REPEAT)
+#define TMB_TAB KC_TAB
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [BASE] = LAYOUT(
-        KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LEFT,           KC_RGHT, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-        KC_DEL,  KC_Q,    KC_D,    KC_R,    KC_W,    KC_B,    TG(SYMB),         TG(SYMB), KC_J,    KC_F,    KC_U,    KC_P,    KC_P,    KC_BSLS,
-        KC_BSPC, KC_A,    KC_S,    KC_H,    KC_T,    KC_G,    KC_HYPR,           KC_MEH,  KC_Y,    KC_N,    KC_E,    KC_O,    KC_I, LT(MDIA, KC_QUOT),
-        KC_LSFT, LCTL_T(KC_Z),KC_X,KC_M,    KC_C,    KC_V,                                KC_K,    KC_L,    KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), KC_RSFT,
-    LT(SYMB,KC_GRV),_______,A(KC_LSFT),KC_LEFT, KC_RGHT,  LALT_T(KC_APP),    RCTL_T(KC_ESC),   KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, MO(SYMB),
-                                            KC_SPC,  KC_BSPC, KC_LGUI,           KC_LALT,  KC_TAB,  KC_ENT
+    /*
+    *  q d r w b   j f u p å ä
+    *  a s h t g   y n e o i ö
+    *  z x m c v   k l , . -
+    */
+    [DEF] = LAYOUT(
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  KC_Q,     KC_D,     KC_R,     KC_W,     KC_B,     _______,      _______,  KC_J,     KC_F,     KC_U,     KC_P,     SE_ARNG,  SE_ADIA,
+        _______,  KC_A,     KC_S,     KC_H,     KC_T,     KC_G,     _______,      _______,  KC_Y,     KC_N,     KC_E,     KC_O,     KC_I,     SE_ODIA,
+        _______,  KC_Z,     KC_X,     KC_M,     KC_C,     KC_V,                             KC_K,     KC_L,     KC_COMM,  KC_DOT,   KC_SLSH,  _______,
+        _______,  _______,  _______,  _______,  _______,            _______,      _______,            _______,  _______,  _______,  _______,  LT(MED, _______),
+                                                TMB_RPT,  TMB_TAB,  _______,      _______,  KC_ENT,   KC_SPC
     ),
-
-    [SYMB] = LAYOUT(
-        VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-        _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, _______,           _______, KC_UP,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12,
-        _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,           _______, KC_DOWN, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
-        _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             KC_AMPR, KC_1,    KC_2,    KC_3,    KC_BSLS, _______,
-        EE_CLR,  _______, _______, _______, _______,          RGB_VAI,           RGB_TOG,          _______, KC_DOT,  KC_0,    KC_EQL,  _______,
-                                            RGB_HUD, RGB_VAD, RGB_HUI, TOGGLE_LAYER_COLOR,_______, _______
+    
+    /*
+    *  ' < > "  .
+    *  ! - + =  #
+    *  ^ / * \ ../
+    */
+    [SYM] = LAYOUT(
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  KC_QUOT,  KC_LABK,  KC_RABK,  KC_DQUO,  KC_DOT,   _______,      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  KC_EXLM,  KC_MINS,  KC_PLUS,  KC_EQL,   KC_HASH,  _______,      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  KC_CIRC,  KC_SLSH,  KC_ASTR,  KC_BSLS,  DIRUP,                            _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,            _______,      _______,            _______,  _______,  _______,  _______,  _______,
+                                                _______,  _______,  _______,      _______,  _______,  _______
     ),
+    // [SYM+10] = LAYOUT(
+    //     VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+    //     _______, KC_EXLM, KC_LABK, KC_RABK, KC_AT,    KC_PIPE, _______,           _______, KC_UP,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12,
+    //     _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,           _______, KC_DOWN, KC_4,    KC_5,    KC_6,    KC_PLUS, _______,
+    //     _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                             KC_AMPR, KC_1,    KC_2,    KC_3,    KC_BSLS, _______,
+    //     EE_CLR,  _______, _______, _______, _______,          RGB_VAI,           RGB_TOG,          _______, KC_DOT,  KC_0,    KC_EQL,  _______,
+    //                                         RGB_HUD, RGB_VAD, RGB_HUI, TOGGLE_LAYER_COLOR,_______, _______
+    // ),
 
-    [MDIA] = LAYOUT(
+    [MED] = LAYOUT(
         LED_LEVEL,_______,_______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, QK_BOOT,
         _______, _______, _______, KC_MS_U, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______,           _______, _______, _______, _______, _______, _______, KC_MPLY,
@@ -62,6 +91,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, KC_BTN1, KC_BTN2,         _______,            _______,          KC_VOLU, KC_VOLD, KC_MUTE, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
+
+    // [] = LAYOUT(
+    //     _______,  _______,  _______,  _______,  _______,  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    //     _______,  _______,  _______,  _______,  _______,  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    //     _______,  _______,  _______,  _______,  _______,  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+    //     _______,  _______,  _______,  _______,  _______,  _______,                          _______,  _______,  _______,  _______,  _______,  _______,
+    //     _______,  _______,  _______,  _______,  _______,            _______,      _______,            _______,  _______,  _______,  _______,  _______,
+    //                                             _______,  _______,  _______,      _______,  _______,  _______
+    // ),
+
+    // [] = LAYOUT(
+    //     _______, _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______,
+    //     _______, _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______,
+    //     _______, _______,  _______,  _______,  _______,       _______,  _______,  _______,  _______,  _______,
+    //                                  _______,  _______,       _______,  _______
+    // ),
 };
 // clang-format on
 
@@ -70,6 +115,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case VRSN:
       SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+      return false;
+    case DIRUP:
+      SEND_STRING("../");
       return false;
     }
   }
