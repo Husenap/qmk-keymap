@@ -1,7 +1,7 @@
 KEYMAP = husenap
 KEYBOARD = moonlander
 
-.PHONY: init build
+.PHONY: init build clean
 
 init:
 	git submodule update --init --recursive
@@ -15,3 +15,6 @@ init:
 
 build:
 	cd qmk_firmware; qmk compile -kb $(KEYBOARD) -km $(KEYMAP)
+
+clean:
+	rm -rf qmk_firmware
