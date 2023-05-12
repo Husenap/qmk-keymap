@@ -7,14 +7,12 @@ CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
 
 SWAP_HANDS_ENABLE = no
-RGBLIGHT_ENABLE = no       
-RGB_MATRIX_ENABLE = no
-BACKLIGHT_ENABLE = no       
+RGB_MATRIX_ENABLE = yes
 AUDIO_ENABLE = no
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no 
-MOUSEKEY_ENABLE = no
 
+MOUSEKEY_ENABLE = no
 EXTRAKEY_ENABLE = yes         # Audio control and System control
  
 SRC += features/achordion.c

@@ -19,7 +19,6 @@
 
 #include QMK_KEYBOARD_H
 
-#include "features/achordion.h"
 #include "moonlander.h"
 #include "sendstring_swedish.h"
 #include "stdint.h"
