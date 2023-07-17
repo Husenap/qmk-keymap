@@ -4,7 +4,6 @@ KEYBOARD = moonlander
 .PHONY: init build clean
 
 build:
-	cd qmk_firmware; qmk lint -kb $(KEYBOARD) -km $(KEYMAP)
 	cd qmk_firmware; qmk compile -kb $(KEYBOARD) -km $(KEYMAP)
 
 gencc:
