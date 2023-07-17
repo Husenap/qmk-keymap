@@ -21,7 +21,6 @@
 // https://docs.qmk.fm/#/tap_hold
 #define TAPPING_TERM 200
 #define QUICK_TAP_TERM 0
-#define IGNORE_MOD_TAP_INTERRUPT
 #define PERMISSIVE_HOLD
 
 #define COMBO_TERM 20

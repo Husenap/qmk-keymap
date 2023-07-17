@@ -76,12 +76,15 @@ bool process_achordion(uint16_t keycode, keyrecord_t* record) {
   // Determine whether the current event is for a mod-tap or layer-tap key.
   const bool is_mt       = IS_QK_MOD_TAP(keycode);
   const bool is_tap_hold = is_mt || IS_QK_LAYER_TAP(keycode);
-  // Check key position to avoid acting on combos.
-  const bool is_physical_pos =
-      (record->event.key.row < KEYLOC_COMBO && record->event.key.col < KEYLOC_COMBO);
+  // Check that this is a normal key event, don't act on combos.
+#ifdef IS_KEYEVENT
+  const bool is_key_event = IS_KEYEVENT(record->event);
+#else
+  const bool is_key_event = (record->event.key.row < 254 && record->event.key.col < 254);
+#endif
 
   if (achordion_state == STATE_RELEASED) {
-    if (is_tap_hold && record->tap.count == 0 && record->event.pressed && is_physical_pos) {
+    if (is_tap_hold && record->tap.count == 0 && record->event.pressed && is_key_event) {
       // A tap-hold key is pressed and considered by QMK as "held".
       const uint16_t timeout = achordion_timeout(keycode);
       if (timeout > 0) {
@@ -139,7 +142,7 @@ bool process_achordion(uint16_t keycode, keyrecord_t* record) {
     // events back into the handling pipeline so that QMK features and other
     // user code can see them. This is done by calling `process_record()`, which
     // in turn calls most handlers including `process_record_user()`.
-    if (!is_physical_pos || (is_tap_hold && record->tap.count == 0) ||
+    if (!is_key_event || (is_tap_hold && record->tap.count == 0) ||
         achordion_chord(tap_hold_keycode, &tap_hold_record, keycode, record)) {
       dprintln("Achordion: Plumbing hold press.");
       settle_as_hold();
@@ -152,6 +155,7 @@ bool process_achordion(uint16_t keycode, keyrecord_t* record) {
       // Plumb tap press event.
       recursively_process_record(&tap_hold_record, STATE_TAPPING);
 
+      send_keyboard_report();
 #if TAP_CODE_DELAY > 0
       wait_ms(TAP_CODE_DELAY);
 #endif // TAP_CODE_DELAY > 0
