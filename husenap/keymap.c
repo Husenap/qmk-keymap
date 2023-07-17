@@ -26,7 +26,6 @@
 #include QMK_KEYBOARD_H
 
 #include "features/achordion.h"
-#include "features/repeat_key.h"
 #include "moonlander.h"
 #include "rgb_matrix.h"
 #include "sendstring_swedish.h"
@@ -45,7 +44,6 @@ enum layers {
 
 enum custom_keycodes {
   VRSN = SAFE_RANGE, // Keyboard, Keymap, Version
-  REPEAT,            // Repeat key
   DIRUP,             // Directory up, ../
 };
 
@@ -64,7 +62,7 @@ enum custom_keycodes {
 #define TMB_SPC LT(NAV, KC_SPC)
 #define TMB_TAB LCTL_T(KC_TAB)
 #define TMB_ENT RCTL_T(KC_ENT)
-#define TMB_RPT LT(SYM, REPEAT)
+#define TMB_RPT LT(SYM, QK_REP)
 
 // Layer Changes
 #define TO_GAME TG(GAME)
@@ -274,7 +272,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) return false;
 
   if (keycode == TMB_RPT && !record->tap.count) return true;
-  if (!process_repeat_key(keycode, record, TMB_RPT)) return false;
 
   if (!process_macros(keycode, record)) return false;
 
