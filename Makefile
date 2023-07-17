@@ -11,7 +11,7 @@ gencc:
 	cd qmk_firmware; qmk generate-compilation-database -kb $(KEYBOARD) -km $(KEYMAP)
 
 init:
-	git submodule update --init --recursive
+	git submodule update --init --recursive --remote --merge
 
 	sed -i 's/LAYOUT_moonlander/LAYOUT/g' qmk_firmware/keyboards/$(KEYBOARD)/**.*
 
