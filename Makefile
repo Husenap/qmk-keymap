@@ -11,6 +11,8 @@ gencc:
 
 init:
 	git submodule update --init --recursive --remote --merge
+	
+	cd qmk_firmware; qmk git-submodule
 
 	sed -i 's/LAYOUT_moonlander/LAYOUT/g' qmk_firmware/keyboards/$(KEYBOARD)/**.*
 
