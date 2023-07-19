@@ -10,6 +10,12 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
     case MY_GRV:
       SEND_STRING("`");
       return false;
+    case MY_TILD:
+      SEND_STRING("~");
+      return false;
+    case MY_CIRC:
+      SEND_STRING("^");
+      return false;
     }
   }
   return true;

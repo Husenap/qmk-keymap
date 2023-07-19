@@ -8,7 +8,9 @@
 enum custom_keycodes {
   VRSN = SAFE_RANGE, // Keyboard, Keymap, Version
   DIRUP,             // Directory up, ../
-  MY_GRV
+  MY_GRV,
+  MY_TILD,
+  MY_CIRC
 };
 
 // Home row mods
