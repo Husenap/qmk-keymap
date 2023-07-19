@@ -1,5 +1,6 @@
 #pragma once
 
+#include "keycodes.h"
 #include QMK_KEYBOARD_H
 #include "definitions/keycodes.h"
 
@@ -25,6 +26,8 @@ bool process_repeat(uint16_t keycode, keyrecord_t *record) {
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t *record, uint8_t *remembered_mods) {
   switch (keycode) {
+  case KC_BSPC:
+  case KC_DEL:
   case TMB_RPT:
     return false;
   }
