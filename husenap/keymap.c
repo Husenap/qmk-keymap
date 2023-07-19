@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DEL,   KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,     _______,      _______,  KC_J,     KC_L,     KC_U,     KC_Y,     SE_ARNG,  _______,
         KC_BSPC,  HRM_A,    HRM_R,    HRM_S,    HRM_T,    KC_G,     _______,      _______,  KC_M,     HRM_N,    HRM_E,    HRM_I,    HRM_O,    SE_ODIA,
         _______,  KC_Z,     KC_X, LT(FUN,KC_C), KC_D,     KC_V,                             KC_K,     KC_H,     KC_COMM,  KC_DOT,   SE_ADIA,  _______,
-        TO_GAME,  _______,  _______,  _______,  _______,            _______,      _______,            _______,  _______,  TO_MED,   _______,  TO_NUM,
+        TO_GAME,  _______,  _______,  _______,  _______,            CW_TOGG,      KC_ESC,             _______,  _______,  TO_MED,   _______,  TO_NUM,
                                                 TMB_SPC,  TMB_TAB,  _______,      _______,  TMB_ENT,  TMB_RPT
     ),
 
@@ -134,13 +134,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-#include "g/keymap_combo.h"
-
 // clang-format off
-#define C_PRMRY         {0, 255, 255}
-#define C_SNDRY       {32, 255, 255}
-#define C_ACCNT          {127, 255, 255}
-#define C_BLACK           {0,0,0}
+#define C_PRMRY       {0, 255, 255}
+#define C_SNDRY       {-50, 255, 255}
+#define C_ACCNT       {127, 255, 255}
+#define C_BLACK       {0,0,0}
 
 const HSV PROGMEM ledmap[][RGB_MATRIX_LED_COUNT] = {
     [DEF] = LED_LAYOUT(
@@ -148,7 +146,7 @@ const HSV PROGMEM ledmap[][RGB_MATRIX_LED_COUNT] = {
               C_SNDRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,        C_BLACK,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,  
               C_SNDRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,        C_BLACK,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  
               C_BLACK,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,                            C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,  
-              C_ACCNT,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,            C_BLACK,        C_BLACK,            C_BLACK,  C_BLACK,  C_ACCNT,  C_BLACK,  C_ACCNT,  
+              C_ACCNT,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,            C_SNDRY,        C_SNDRY,            C_BLACK,  C_BLACK,  C_ACCNT,  C_BLACK,  C_ACCNT,  
                                                       C_SNDRY,  C_SNDRY,  C_BLACK,        C_BLACK,  C_SNDRY,  C_SNDRY
     ),
 
@@ -184,7 +182,7 @@ void set_layer_color(int layer) {
     if (!hsv.h && !hsv.s && !hsv.v) {
       rgb_matrix_set_color(i, 0, 0, 0);
     } else {
-      hsv.h += rgb_matrix_config.hsv.h;
+      hsv.h += rgb_matrix_config.hsv.h - 16;
       hsv.s *= (float)rgb_matrix_config.hsv.s / UINT8_MAX;
       hsv.v *= (float)rgb_matrix_config.hsv.v / UINT8_MAX;
       RGB rgb = hsv_to_rgb(hsv);

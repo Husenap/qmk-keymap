@@ -1,8 +1,6 @@
 SRC 								+= features/achordion.c
-VPATH 							+= keyboards/gboards
 
 EXTRAKEY_ENABLE 		= yes												# Enable N-Key Rollover
-COMBO_ENABLE				= yes
 
 CAPS_WORD_ENABLE 		= yes
 REPEAT_KEY_ENABLE		= yes
