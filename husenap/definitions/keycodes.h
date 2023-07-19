@@ -2,6 +2,8 @@
 
 #include QMK_KEYBOARD_H
 #include "layers.h"
+#include "quantum/keycodes.h"
+#include "quantum/keymap_extras/sendstring_swedish.h"
 
 enum custom_keycodes {
   VRSN = SAFE_RANGE, // Keyboard, Keymap, Version

@@ -23,8 +23,10 @@
 #define QUICK_TAP_TERM 0
 #define PERMISSIVE_HOLD
 
+// Configure repeat key
 #define NO_ALT_REPEAT_KEY
 
+// Configure RGB
 #undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
 #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255
 #define RGB_MATRIX_TIMEOUT 600000
