@@ -18,6 +18,8 @@
  */
 
 #include "config.h"
+#include "keymap_swedish.h"
+#include "process_caps_word.h"
 #include "util.h"
 #include QMK_KEYBOARD_H
 
@@ -34,6 +36,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_macros(keycode, record)) return false;
 
   return true;
+}
+
+// CAPS WORD
+bool caps_word_press_user(uint16_t keycode) {
+  switch (keycode) {
+  // Keycodes that continue Caps Word, with shift applied.
+  case KC_A ... KC_Z:
+  case SE_ARNG:
+  case SE_ODIA:
+  case SE_ADIA:
+  case SE_MINS:
+  case KC_MINS:
+    add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
+    return true;
+
+  // Keycodes that continue Caps Word, without shifting.
+  case KC_1 ... KC_0:
+  case KC_BSPC:
+  case KC_DEL:
+  case KC_UNDS:
+  case SE_UNDS:
+    return true;
+
+  default:
+    return false; // Deactivate Caps Word.
+  }
 }
 
 // Achordion
