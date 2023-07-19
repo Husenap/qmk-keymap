@@ -10,7 +10,7 @@ make gencc
 ```
 
 ### Compiling
-To compile the keymap run
+To compile the keymap run, this will create a binary at `qmk_firmware/moonlander_husenap`
 ```bash
 make build
 ```
