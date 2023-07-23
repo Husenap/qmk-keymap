@@ -46,8 +46,6 @@ bool caps_word_press_user(uint16_t keycode) {
   case SE_ARNG:
   case SE_ODIA:
   case SE_ADIA:
-  case SE_MINS:
-  case KC_MINS:
     add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
     return true;
 
@@ -57,6 +55,8 @@ bool caps_word_press_user(uint16_t keycode) {
   case KC_DEL:
   case KC_UNDS:
   case SE_UNDS:
+  case KC_MINS:
+  case SE_MINS:
     return true;
 
   default:
