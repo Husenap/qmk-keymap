@@ -6,34 +6,43 @@
 #define C_PRMRY       {0, 255, 255}
 #define C_SNDRY       {-50, 255, 255}
 #define C_ACCNT       {127, 255, 255}
-#define C_BLACK       {0,0,0}
+#define C______       {0,0,0}
 
 const HSV PROGMEM ledmap[][RGB_MATRIX_LED_COUNT] = {
     [DEF] = LED_LAYOUT(
-              C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-              C_SNDRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,        C_BLACK,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,  
-              C_SNDRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,        C_BLACK,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  
-              C_BLACK,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,                            C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_BLACK,  
-              C_ACCNT,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,            C_SNDRY,        C_SNDRY,            C_BLACK,  C_BLACK,  C_ACCNT,  C_BLACK,  C_ACCNT,  
-                                                      C_SNDRY,  C_SNDRY,  C_BLACK,        C_BLACK,  C_SNDRY,  C_SNDRY
+              C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C______,  
+              C_SNDRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C______,        C______,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C______,  
+              C_SNDRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C______,        C______,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  
+              C______,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,                            C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C______,  
+              C_ACCNT,  C______,  C______,  C______,  C______,            C_SNDRY,        C_SNDRY,            C______,  C______,  C_ACCNT,  C______,  C_ACCNT,  
+                                                      C_SNDRY,  C_SNDRY,  C______,        C______,  C_SNDRY,  C_SNDRY
     ),
 
     [MED] = LED_LAYOUT(
-              C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_ACCNT,  
-              C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-              C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_SNDRY,  C_PRMRY,  C_SNDRY,  
-              C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,                            C_BLACK,  C_BLACK,  C_BLACK,  C_SNDRY,  C_PRMRY,  C_SNDRY,  
-              C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,            C_BLACK,        C_BLACK,            C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-                                                      C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK
+              C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C_ACCNT,  
+              C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C______,  
+              C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C_SNDRY,  C_PRMRY,  C_SNDRY,  
+              C______,  C______,  C______,  C______,  C______,  C______,                            C______,  C______,  C______,  C_SNDRY,  C_PRMRY,  C_SNDRY,  
+              C______,  C______,  C______,  C______,  C______,            C______,        C______,            C______,  C______,  C______,  C______,  C______,  
+                                                      C______,  C______,  C______,        C______,  C______,  C______
+    ),
+
+    [NAV] = LED_LAYOUT(
+              C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C______,  
+              C______,  C______,  C_SNDRY,  C_PRMRY,  C_SNDRY,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C______,  
+              C______,  C_ACCNT,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C______,  C______,        C______,  C______,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C_PRMRY,  C______,  
+              C______,  C_ACCNT,  C_SNDRY,  C_ACCNT,  C_SNDRY,  C______,                            C______,  C______,  C______,  C______,  C______,  C______,  
+              C______,  C______,  C______,  C______,  C______,            C______,        C______,            C______,  C______,  C______,  C______,  C______,  
+                                                      C______,  C______,  C______,        C______,  C______,  C______
     ),
 
     // [] = LED_LAYOUT(
-    //           C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-    //           C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-    //           C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-    //           C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,                            C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-    //           C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,            C_BLACK,        C_BLACK,            C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  C_BLACK,  
-    //                                                   C_BLACK,  C_BLACK,  C_BLACK,        C_BLACK,  C_BLACK,  C_BLACK
+    //           C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C______,  
+    //           C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C______,  
+    //           C______,  C______,  C______,  C______,  C______,  C______,  C______,        C______,  C______,  C______,  C______,  C______,  C______,  C______,  
+    //           C______,  C______,  C______,  C______,  C______,  C______,                            C______,  C______,  C______,  C______,  C______,  C______,  
+    //           C______,  C______,  C______,  C______,  C______,            C______,        C______,            C______,  C______,  C______,  C______,  C______,  
+    //                                                   C______,  C______,  C______,        C______,  C______,  C______
     // ),
 };
 // clang-format on
@@ -61,6 +70,7 @@ bool rgb_matrix_indicators_user(void) {
   switch (get_highest_layer(layer_state)) {
   case DEF:
   case MED:
+  case NAV:
     set_layer_color(get_highest_layer(layer_state));
     break;
   default:
